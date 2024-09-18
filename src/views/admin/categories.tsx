@@ -1,4 +1,5 @@
 import getCategoriesListApi from "apis/admin/category/get-categories";
+import getProductsListApi from "apis/admin/product/get-products-list";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { TCategory } from "shared/types/category";
@@ -6,10 +7,14 @@ import { TCategory } from "shared/types/category";
 export default function CategoriesList() {
   const [categorytList, setCategorytList] = useState<TCategory[]>([]);
   useEffect(() => {
-    getCategoriesListApi().then((res)=>{
-     console.log(res)
-     setCategorytList(res);
-   })
+  //   getCategoriesListApi().then((res)=>{
+  //    console.log(res)
+  //    setCategorytList(res);
+  //  })
+
+   getProductsListApi().then((res) => {
+    setCategorytList(res);
+  });
   }, []);
 
   if(!categorytList){
@@ -23,7 +28,7 @@ export default function CategoriesList() {
         {categorytList.map((category) => (
           <Link
             className="my-1 px-1 transition duration-500 hover:scale-105"
-            to={`${category?._id}`}
+            to={`/admin/products/${category?._id}`}
           >
             <div>
               <article className="overflow-hidden rounded-lg shadow-lg">
@@ -34,7 +39,7 @@ export default function CategoriesList() {
                 />
                 <div className="flex items-center leading-tight p-2 md:p-4">
                   <div className="text-lg w-full text-center">
-                    <span className="text-black	">{category.name}</span>
+                    <span className="text-black	">{category?.nameAR}</span>
                   </div>
                 </div>
               </article>

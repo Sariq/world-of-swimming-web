@@ -11,7 +11,7 @@ import Auth from "layouts/Auth.js";
 
 // views without layouts
 
-import Landing from "views/Landing.js";
+import Landing from "views/landing/Landing";
 import Profile from "views/Profile.js";
 import Index from "views/Index.js";
 import Login from "views/auth/Login";
@@ -27,6 +27,10 @@ import ProductsList from "views/admin/Products";
 import CategoriesList from "views/admin/categories";
 import ProductPage from "views/admin/product";
 import OrderdsPage from "views/admin/orders";
+import ErrorsPage from "views/admin/errors";
+import DeliveryArea from "views/admin/delivery-area";
+import Cart from "views/cart/cart";
+import DeliveryListView from "views/delivery/delivery-list";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -40,13 +44,16 @@ root.render(
         <Route path="/admin/categories" element={<CategoriesList />} />
         <Route path="/admin/categories/:id" element={<ProductsList />} />
         <Route path="/admin/products" element={<ProductsList />} />
+        <Route path="/admin/products/:id" element={<ProductsList />} />
         <Route path="/admin/product" element={<ProductPage />} />
         <Route path="/admin/product/add" element={<ProductPage />} />
         <Route path="/admin/product/:id" element={<ProductPage />} />
+        <Route path="/admin/errors" element={<ErrorsPage />} />
         <Route path="/admin/orders" element={<OrderdsPage />} />
         <Route path="/admin/maps" element={<Maps />} />
         <Route path="/admin/settings" element={<Settings />} />
         <Route path="/admin/tables" element={<Tables />} />
+        <Route path="/admin/delivery/area" element={<DeliveryArea />} />
         <Route path="" element={<Navigate to="/admin/dashboard" />} />
       </Route>
       <Route path="auth" element={<Auth />}>
@@ -57,6 +64,8 @@ root.render(
       {/* add routes without layouts */}
       <Route path="/landing" element={<Landing />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/pizza-gmel/delivery" element={<DeliveryListView />} />
       <Route path="/" element={<Index />} />
     </Routes>
   </BrowserRouter>

@@ -9,6 +9,7 @@ import getProductsListApi from "apis/admin/product/get-products-list";
 import deleteProductApi from "apis/admin/product/delete-product";
 import getProductsByCategoryIdApi from "apis/admin/product/get-products-by-category-id";
 import { CategoryConsts, CategoryEnum } from "shared/constants";
+import { cdnUrl } from "consts/shared";
 
 const iconClass =
   "text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full";
@@ -24,22 +25,29 @@ export default function ProductsList() {
   //   const categoryName= CategoryConsts[CategoryEnum.cheeseCake];
   // }
   const getProductsList = () => {
-    getProductsListApi(1).then((res) => {
-      setProductsList(res);
+    getProductsListApi().then((res) => {
+       const category = res.find((categroy:any)=> categroy._id === params.id)
+       console.log(category.products)
+
+       setProductsList(category.products);
     });
+    
   };
   useEffect(() => {
-    if (params.id) {
+        // if (params.id && productsList) {
+
+        // }
+    //if (params.id && productsList) {
       // setInterval(() => {
-        getProductsByCategoryIdApi((params.id), 1).then((res) => {
-          setProductsList(res);
-        });
+        // getProductsByCategoryIdApi((params.id), 1).then((res) => {
+        //   setProductsList(res);
+        // });
     //   }, 1000);
     // } else {
     //   setInterval(() => {
-    //     getProductsList();
+     getProductsList();
     //   }, 1000);
-    }
+    //}
   }, []);
 
   const getCategoryName = () => {
@@ -160,8 +168,8 @@ export default function ProductsList() {
                 <article className="overflow-hidden rounded-lg shadow-lg">
                   <img
                     alt="Placeholder"
-                    className="block  w-80 h-40"
-                    src={`${product.img}`}
+                    className="block  max-w-50 max-h-80"
+                    src={`${cdnUrl}${product.img[0].uri}`}
                   />
                   <div
                     className={clsx(
@@ -172,7 +180,7 @@ export default function ProductsList() {
                     )}
                   >
                     <div className="text-lg w-full text-center">
-                      <span className="text-black	">{product.name}</span>
+                      <span className="text-black	">{product.nameAR}</span>
                     </div>
                   </div>
                 </article>

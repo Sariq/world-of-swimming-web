@@ -244,7 +244,7 @@ const ProductPage = () => {
                     </option>
                     {categorytList?.map((category) => (
                       <option value={category?._id}>
-                        <span>{category?.name}</span>
+                        <span>{category?.nameAR}</span>
                       </option>
                     ))}
                   </select>

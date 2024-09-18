@@ -1,11 +1,15 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import getMenu from "apis/admin/menu/get-menu"
 
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
 export default function Index() {
+  useEffect(()=>{
+    getMenu();
+  },[])
   return (
     <>
       <IndexNavbar fixed />
