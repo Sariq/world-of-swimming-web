@@ -10,6 +10,7 @@ import clsx from "clsx";
 import createLeadApi from "apis/lead/create-lead";
 import Profile from "views/Profile";
 import Plans from "components/plans";
+import { useMediaQueryMatch } from "shared/hooks/media-query-match";
 const inputLabelClass =
   "block text-lg uppercase text-blueGray-600 font-bold mb-2";
   const iconClass =
@@ -49,7 +50,8 @@ const courseNotes = [
   const [leadFormData, setLeadFormData] = useState<any>();
   const [branchesList, setBranchesList] = useState<any>([{label: 'سخنين', value: '1'}, {label: 'الطيبة', value: '2'}]);
 
-
+   const isAboveLg = useMediaQueryMatch('md');
+   console.log("isAboveLg",isAboveLg)
   const handleInputChange = (name: string, event: any) => {
     const target = event.target;
     const value = target.value;
@@ -79,14 +81,14 @@ const courseNotes = [
     <>
       {/* <Navbar transparent /> */}
       <main className="bg-blueGray-200 ">
-        <section className="pb-20 bg-blueGray-200 h-screen	bg-cover " style={{
-              backgroundImage: "url('/images/profile/DSC03693.jpg')",
+        <section className="bg-blueGray-200 md:h-screen h-80	bg-cover " style={{
+              backgroundImage: isAboveLg ? "url('/images/profile/DSC03693.jpg')" : "url('/images/profile/reham-7fe.jpg')" ,
             }}>
-       <div className="  mx-auto pt-20 justify-center">
+       <div className="  mx-auto md:pt-20 justify-center">
             <img
                     alt="..."
                     src="/icon.png"
-                    className="align-middle rounded-t-lg h-40 self-center m-auto"
+                    className="align-middle rounded-t-lg h-32 md:h-40 self-center m-auto"
                   />
             </div>
             
@@ -175,7 +177,7 @@ const courseNotes = [
               </div> */}
             </div>
 
-            <div className="flex flex-wrap items-center mt-32">
+            <div className="flex flex-wrap items-center mt-5 lg:mt-32">
               <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
                 <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
                   <i className="fas fa-user-friends text-xl"></i>
@@ -313,9 +315,9 @@ const courseNotes = [
           </div>
         </section> */}
 
-         <section className="pt-20 pb-48">
+         <section className="pt-10 lg:pt-20 lg:pb-48">
           <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center text-center mb-24">
+            <div className="flex flex-wrap justify-center text-center mb-8 lg:mb-24">
               <div className="w-full lg:w-6/12 px-4">
                 <h2 className="text-4xl font-semibold">طاقم المشروع</h2>
                 {/* <p className="text-lg leading-relaxed m-4 text-blueGray-500">
@@ -396,7 +398,7 @@ const courseNotes = [
           </div>
         </section> 
 
-        <section className="pb-80 relative block bg-blueGray-800">
+        <section className="pb-32 lg:pb-80 relative block bg-blueGray-800">
           <Plans/>
 
         </section>

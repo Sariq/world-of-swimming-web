@@ -37,19 +37,19 @@ const PlanDetails = ({title, duration, count, teamCount, price}: TProps) => {
   return (
     <>
 
-      <div className="container mx-auto px-4 lg:pt-10 lg:pb-10">
+      <div className="container mx-auto lg:px-4 lg:pt-10 lg:pb-10">
         <div className="flex flex-wrap text-center justify-center">
           <div className="w-full lg:w-6/12 px-4">
-            <h2 className="text-4xl font-semibold text-white">
+            <h2 className="text-lg lg:text-4xl font-semibold text-white">
               رُزمة تعليم سباحة - {title}
             </h2>
-            <p className="text-xl leading-relaxed mt-4 mb-4 text-blueGray-200">
+            <p className="text-md lg:text-xl leading-relaxed mt-4 lg:mb-4 text-blueGray-200">
               قبل بداية دورة السباحة، مهم التنويه لعدة نقاط مهمة :
             </p>
           </div>
         </div>
 
-        <div className="flex flex-wrap mt-10">
+        <div className="flex flex-wrap lg:mt-10">
           <div className="lg:pt-6 pt-6 w-full md:w-4/12 px-4 text-center">
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
               <div className="px-4 py-5 flex-auto">
@@ -86,7 +86,7 @@ const PlanDetails = ({title, duration, count, teamCount, price}: TProps) => {
             </div>
           </div>
 
-          <div className="pt-6 md:w-4/12 px-4 text-center  m-auto ">
+          <div className="pt-6 md:w-4/12 px-4 text-center  m-auto w-full ">
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg 	">
               <div className="px-4 py-5 flex-auto">
                 <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
@@ -120,18 +120,18 @@ const PlanDetails = ({title, duration, count, teamCount, price}: TProps) => {
 
         <div className="flex flex-wrap text-center justify-center mt-20">
           <div className="w-full lg:w-6/12 px-4">
-            <h3 className="text-3xl font-semibold text-white">
+            <h3 className="text-xl lg:text-3xl font-semibold text-white">
               امكانيات الدفع المتاحة
             </h3>
           </div>
         </div>
 
-        <div className="flex flex-wrap mt-12 justify-center">
+        <div className="flex flex-wrap mt-6 lg:mt-12 justify-center space-y-8 lg:space-y-0">
           <div className="w-full lg:w-3/12 px-4 text-center">
             <div className="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
               <i className="fas fa-b text-xl"></i>
             </div>
-            <h6 className="text-xl mt-5 font-semibold text-white">
+            <h6 className="text-lg lg:text-xl mt-2 lg:mt-5 font-semibold text-white">
               عبر تطبيق bit
             </h6>
           </div>
@@ -139,7 +139,7 @@ const PlanDetails = ({title, duration, count, teamCount, price}: TProps) => {
             <div className="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
               <i className="fas fa-building-columns text-xl"></i>
             </div>
-            <h5 className="text-xl mt-5 font-semibold text-white">
+            <h5 className="text-lg lg:text-xl mt-2 lg:mt-5 font-semibold text-white">
               تحويل المبلغ عبر حساب البنك
             </h5>
           </div>
@@ -147,7 +147,7 @@ const PlanDetails = ({title, duration, count, teamCount, price}: TProps) => {
             <div className="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
               <i className="fas fa-credit-card text-xl"></i>
             </div>
-            <h5 className="text-xl mt-5 font-semibold text-white">
+            <h5 className="text-lg lg:text-xl mt-2 lg:mt-5 font-semibold text-white">
               الدفع بواسطة بطاقة الائتمان. (امكانية تقسيط المبلغ حتى 4 دفعات)
             </h5>
           </div>
@@ -155,7 +155,7 @@ const PlanDetails = ({title, duration, count, teamCount, price}: TProps) => {
             <div className="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
               <i className="fas fa-wallet text-xl"></i>
             </div>
-            <h5 className="text-xl mt-5 font-semibold text-white">
+            <h5 className="text-lg lg:text-xl mt-2 lg:mt-5 font-semibold text-white">
               نقدا في الدرس الاول
             </h5>
           </div>

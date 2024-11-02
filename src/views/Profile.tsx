@@ -7,7 +7,7 @@ export default function Profile() {
   return (
     <>
     
-        <section className="relative block h-full -mt-72  pb-24">
+        <section className="relative block h-full md:-mt-72  pb-10 lg:pb-24">
         {/* <div className="z-10 absolute inset-x-0 shadow-xl  w-3/4 md:w-2/5  mx-auto pt-20 justify-center">
             <img
                     alt="..."
@@ -49,7 +49,7 @@ export default function Profile() {
           </div> */}
 
           <div className="container mx-auto px-4 ">
-            <div className="relative flex flex-col min-w-0 break-words bg-blueGray-100 opacity-100 w-full mb-6 shadow-xl	sm:shadow-pink
+            <div className="relative flex flex-col min-w-0 break-words bg-blueGray-100 opacity-100 w-full mb-6 shadow-xl xs:shadow-pink	md:shadow-pink
 
    rounded-lg ">
               <div className="px-6">

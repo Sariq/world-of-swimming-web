@@ -38,7 +38,7 @@ const PremiumPlan = () => {
   return (
     <>
 
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto lg:px-4">
 
       <PlanDetails
           title={courseData.title}
