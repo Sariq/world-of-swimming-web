@@ -1,10 +1,11 @@
 import { BASE_URL, CUSTOMER_API } from "consts/api";
 import { axiosInstance } from "utils/http-interceptor";
 
-export const getOrdersListApi = (data:any) => {
+export const createLeadApi = (data:any) => {
   const body = data;
+  console.log("body", body);
     return axiosInstance
-      .post(`${BASE_URL}/${CUSTOMER_API.CREATE_LEAD}`,body)
+      .post(`${CUSTOMER_API.CREATE_LEAD}`,body)
       .then(function (response) {
 
          console.log("lead create susccess success", response);
@@ -12,4 +13,4 @@ export const getOrdersListApi = (data:any) => {
       });
   };
 
-  export default getOrdersListApi;
+  export default createLeadApi;

@@ -12,7 +12,7 @@ import Auth from "layouts/Auth.js";
 // views without layouts
 
 import Landing from "views/landing/Landing";
-import Profile from "views/Profile.js";
+import Profile from "views/Profile";
 import Index from "views/Index.js";
 import Login from "views/auth/Login";
 import Register from "views/auth/Register";

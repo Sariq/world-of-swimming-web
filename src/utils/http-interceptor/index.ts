@@ -11,13 +11,13 @@ axiosInstance.interceptors.request.use(
   async function (config: any) {
     const token = await localStorage.getItem("@storage_userToken");
     console.log("token", token)
-    // if (token) {
-      config.headers["Authorization"] = "Token " + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjEyMzQ1Njc4OTIiLCJpZCI6IjY2ODJmYTEwNzA5NTcwMDAwZGIyOWNlOSIsImV4cCI6MTg1NjAzMTk4MCwiaWF0IjoxNzI2NDMxOTgwfQ.sejtF_zv4u_UchP9saPMgFRru4jsTG3j4ftBkdsG1fE';
-    //}
+    if (token) {
+      config.headers["Authorization"] = "Token " + token;
+    }
     if (config.headers["Content-Type"] !== "multipart/form-data") {
       config.headers["Content-Type"] = "application/json";
     }
-        config.headers["app-name"] = 'pizza-gmel'
+        config.headers["app-name"] = 'world-of-swimming'
     return config;
   },
   function (error) {

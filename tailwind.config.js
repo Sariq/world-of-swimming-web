@@ -23,6 +23,8 @@ module.exports = {
   theme: {
     colors: {
       ...colors,
+      pink: '#da2d7c',
+      blue: '#49a4c3'
     },
     extend: {
       minHeight: {
