@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
 
 // components
 
@@ -13,24 +14,23 @@ import Plans from "components/plans";
 import { useMediaQueryMatch } from "shared/hooks/media-query-match";
 const inputLabelClass =
   "block text-lg uppercase text-blueGray-600 font-bold mb-2";
-  const iconClass =
+const iconClass =
   "text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full";
 const inputClass =
   "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 rounded  shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150";
 
-
-  const course1Goals = [
-    "غذاء للروح والجسد.",
-    "تطوير مهارات في السباحة, حسب قوانين ال FINA.",
-    "تعلم التنفس في الماء بشكل سهل وسلس ، بهدف كسب الثقة والسباحة بشكل صح, مضبوط ومريح.",
-    "فهم كيفية التعامل مع الجسم داخل الماء بشكل مريح ومفيد.",
-    "القدرة على فهم، واستعمال الحركات بطريقة صحيحة ومتقنة.",
-    "تعلم طرق للتأقلم في المياه العميقة (لمن تحتاج).",
-    "الانتقال للمرحلة الثانية بنجاح, كمرحلة انتقالية ما قبل فرقة التدريب.",
-    "التعامل مع تحديات ذاتية وشخصية بشكل مهني ومتفهم.",
-    "تحويل السباحة من هواية الى رياضة.",
-    "التعليم يتم مع كل امرأة حسب قدراتها وتطورها في التعامل مع الماء.",
-    "كذألك يتم ملائمة السباحة لكل امرأة بطريقة تختلف عن الأخرى بهدف الحصول على النتيجة الأمثل."
+const course1Goals = [
+  "غذاء للروح والجسد.",
+  "تطوير مهارات في السباحة, حسب قوانين ال FINA.",
+  "تعلم التنفس في الماء بشكل سهل وسلس ، بهدف كسب الثقة والسباحة بشكل صح, مضبوط ومريح.",
+  "فهم كيفية التعامل مع الجسم داخل الماء بشكل مريح ومفيد.",
+  "القدرة على فهم، واستعمال الحركات بطريقة صحيحة ومتقنة.",
+  "تعلم طرق للتأقلم في المياه العميقة (لمن تحتاج).",
+  "الانتقال للمرحلة الثانية بنجاح, كمرحلة انتقالية ما قبل فرقة التدريب.",
+  "التعامل مع تحديات ذاتية وشخصية بشكل مهني ومتفهم.",
+  "تحويل السباحة من هواية الى رياضة.",
+  "التعليم يتم مع كل امرأة حسب قدراتها وتطورها في التعامل مع الماء.",
+  "كذألك يتم ملائمة السباحة لكل امرأة بطريقة تختلف عن الأخرى بهدف الحصول على النتيجة الأمثل.",
 ];
 const courseNotes = [
   "التسجيل للدورة يتم بعد دفع مقدمة (400 شيكل) الرجاء عدم الاحراج من لا تدفع المبلغ فهي غير مسجلة بشكل رسمي.",
@@ -41,17 +41,30 @@ const courseNotes = [
   "بعد إنتهاء الدرس يتم إرسال نص كلامي وفيديوهات متنوعة ومختلفة تتعلق بفحوى درس السباحة، بهدف تذويت الحركات بالعقل والجسد.",
   "امكانية التعويض حتى 20% من مجمل اللقاءات.",
   "عند تغيب عن اللقاء يتم تعويضه بتنسيق مسبق مع واحده من المجموعات، بحال تمكن ذألك.",
-  "(تعويض الدروس يقع على عاتقك)."
-]
+  "(تعويض الدروس يقع على عاتقك).",
+];
 
-
-
-  export default function Landing() {
+export default function Landing() {
   const [leadFormData, setLeadFormData] = useState<any>();
-  const [branchesList, setBranchesList] = useState<any>([{label: 'سخنين', value: '1'}, {label: 'الطيبة', value: '2'}]);
+  const [branchesList, setBranchesList] = useState<any>([
+    { label: "سخنين", value: "1" },
+    { label: "الطيبة", value: "2" },
+  ]);
 
-   const isAboveLg = useMediaQueryMatch('md');
-   console.log("isAboveLg",isAboveLg)
+  const { ref: logoRef, inView: logoInView } = useInView({ triggerOnce: true });
+  const { ref: welcomeRightRef, inView: welcomeRightnInView } = useInView({ triggerOnce: true });
+  const { ref: welcomeLeftRef, inView: welcomeLeftInView } = useInView({ triggerOnce: true });
+
+
+  const { ref: takamRef, inView: takamInView } = useInView({ triggerOnce: true });
+  const { ref: rehamRef, inView: rehamInView } = useInView({ triggerOnce: true });
+  const { ref: linaRef, inView: linaInView } = useInView({ triggerOnce: true });
+  const { ref: azaRef, inView: azanView } = useInView({ triggerOnce: true });
+  const { ref: hakaRef, inView: halaInView } = useInView({ triggerOnce: true });
+
+
+  const isAboveLg = useMediaQueryMatch("md");
+  console.log("isAboveLg", isAboveLg);
   const handleInputChange = (name: string, event: any) => {
     const target = event.target;
     const value = target.value;
@@ -59,10 +72,8 @@ const courseNotes = [
   };
 
   const createLead = () => {
-    createLeadApi(leadFormData)
-  }
-
-
+    createLeadApi(leadFormData);
+  };
 
   const getInputClass = () => {
     // switch (formMode) {
@@ -81,23 +92,31 @@ const courseNotes = [
     <>
       {/* <Navbar transparent /> */}
       <main className="bg-blueGray-200 ">
-        <section className="bg-blueGray-200 md:h-screen h-80	bg-cover " style={{
-              backgroundImage: isAboveLg ? "url('/images/profile/DSC03693.jpg')" : "url('/images/profile/reham-7fe.jpg')" ,
-            }}>
-       <div className="  mx-auto md:pt-20 justify-center">
+        <section
+          className="bg-blueGray-200 md:h-screen h-80	bg-cover "
+          style={{
+            backgroundImage: isAboveLg
+              ? "url('/images/profile/DSC03693.jpg')"
+              : "url('/images/profile/reham-7fe.jpg')",
+          }}
+        >
+          <div
+            ref={logoRef}
+            className={`mx-auto md:pt-20 justify-center ${
+              logoInView ? "animate__animated animate__fadeInDown" : ""
+            }`}
+          >
             <img
-                    alt="..."
-                    src="/icon.png"
-                    className="align-middle rounded-t-lg h-32 md:h-40 self-center m-auto"
-                  />
-            </div>
-            
-            </section>
-    
-                <Profile/>
+              alt="..."
+              src="/icon.png"
+              className="align-middle rounded-t-lg h-32 md:h-40 self-center m-auto"
+            />
+          </div>
+        </section>
 
-    
-          {/* <div className="container relative mx-auto mt-28 ">
+        <Profile />
+
+        {/* <div className="container relative mx-auto mt-28 ">
             <div className="w-2/3  m-auto">
             <img
                     alt="..."
@@ -121,13 +140,13 @@ const courseNotes = [
               </div>
             </div>
           </div> */}
-          {/* <div
+        {/* <div
             className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
             style={{ transform: "translateZ(0)" }}
           >
      
           </div> */}
-   
+
         <section className="pb-20 bg-blueGray-100 relative block">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap">
@@ -145,7 +164,7 @@ const courseNotes = [
                   </div>
                 </div>
               </div> */}
-{/* 
+              {/* 
               <div className="w-full md:w-4/12 px-4 text-center">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
@@ -178,22 +197,25 @@ const courseNotes = [
             </div>
 
             <div className="flex flex-wrap items-center mt-5 lg:mt-32">
-              <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
+              <div className={clsx('w-full md:w-5/12 px-4 mr-auto ml-auto', welcomeRightnInView ? "animate__animated animate__fadeInRight" : "")}   ref={welcomeRightRef}
+              >
                 <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
                   <i className="fas fa-user-friends text-xl"></i>
                 </div>
                 <h3 className="text-3xl mb-2 font-semibold leading-normal">
-                مرحبا بك, واهلا بك في عائلتنا،
+                  مرحبا بك, واهلا بك في عائلتنا،
                 </h3>
                 <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
-                شعارنا هو المهنية, المصداقية والامانة.
-                من اهم اسس المشروع هو العمل على الشعور بالانتماء, ولهذا هدفنا تقديم الافضل على الصعيد المهني وبذل قصارى جهودنا لإكسابك افضل الاليات وطرق السباحه الناجعة وفقا لخبرتنا في المجال على اكمل وجه. بالمقابل , اننا على ثقة تامة بان تكوني على قدر عال من المسؤولية, احترام قوانين المشروع وافراده والحفاظ على السرية.
+                  شعارنا هو المهنية, المصداقية والامانة. من اهم اسس المشروع هو
+                  العمل على الشعور بالانتماء, ولهذا هدفنا تقديم الافضل على
+                  الصعيد المهني وبذل قصارى جهودنا لإكسابك افضل الاليات وطرق
+                  السباحه الناجعة وفقا لخبرتنا في المجال على اكمل وجه. بالمقابل
+                  , اننا على ثقة تامة بان تكوني على قدر عال من المسؤولية, احترام
+                  قوانين المشروع وافراده والحفاظ على السرية.
                 </p>
-       
-           
               </div>
 
-              <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
+              <div className={clsx('w-full md:w-4/12 px-4 mr-auto ml-auto', welcomeRightnInView ? "animate__animated animate__fadeInLeft" : "")} ref={welcomeLeftRef}>
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
                   <img
                     alt="..."
@@ -216,8 +238,8 @@ const courseNotes = [
                       عالم السباحة
                     </h4>
                     <p className="text-md font-light mt-2 text-white">
-                    معا نسعى للحفاظ على السمعة الطيبة للمشروع, وحدته ونجاحه.
-                    نرحب بك في كل حب,
+                      معا نسعى للحفاظ على السمعة الطيبة للمشروع, وحدته ونجاحه.
+                      نرحب بك في كل حب,
                     </p>
                   </blockquote>
                 </div>
@@ -225,19 +247,19 @@ const courseNotes = [
             </div>
           </div>
           <svg
-              className="absolute bottom-0 overflow-hidden"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-              version="1.1"
-              viewBox="0 0 2560 100"
-              x="0"
-              y="0"
-            >
-              <polygon
-                className="text-blueGray-200 fill-current"
-                points="2560 0 2560 100 0 100"
-              ></polygon>
-            </svg>
+            className="absolute bottom-0 overflow-hidden"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+            version="1.1"
+            viewBox="0 0 2560 100"
+            x="0"
+            y="0"
+          >
+            <polygon
+              className="text-blueGray-200 fill-current"
+              points="2560 0 2560 100 0 100"
+            ></polygon>
+          </svg>
         </section>
 
         {/* <section className="relative py-20">
@@ -315,11 +337,11 @@ const courseNotes = [
           </div>
         </section> */}
 
-         <section className="pt-10 lg:pt-20 lg:pb-48">
+        <section className="pt-10 lg:pt-20 lg:pb-48">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center text-center mb-8 lg:mb-24">
               <div className="w-full lg:w-6/12 px-4">
-                <h2 className="text-4xl font-semibold">طاقم المشروع</h2>
+                <h2 className={clsx('text-4xl font-semibold', takamInView ? "animate__animated animate__bounceInUp" : "")} ref={takamRef}>طاقم المشروع</h2>
                 {/* <p className="text-lg leading-relaxed m-4 text-blueGray-500">
                   According to the National Oceanic and Atmospheric
                   Administration, Ted, Scambos, NSIDClead scentist, puts the
@@ -329,7 +351,7 @@ const courseNotes = [
             </div>
             <div className="flex flex-wrap">
               <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                <div className="px-6">
+                <div className={clsx('px-6', rehamInView ? "animate__animated animate__fadeInUp animate__delay-14s" : "")} ref={rehamRef}>
                   <img
                     alt="..."
                     src={require("assets/img/team-members/reham.png")}
@@ -340,13 +362,12 @@ const courseNotes = [
                     <p className="mt-1 text-sm text-blueGray-500 uppercase font-semibold">
                       مؤسسة المشروع
                     </p>
-            
                   </div>
                 </div>
               </div>
               <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                <div className="px-6">
-                  <img
+              <div className={clsx('px-6', linaInView ? "animate__animated animate__fadeInUp animate__delay-15s" : "")} ref={linaRef}>
+              <img
                     alt="..."
                     src={require("assets/img/team-members/lina.png")}
                     className="shadow-lg rounded-full mx-auto w-[160px] h-[280px] p-5"
@@ -354,53 +375,47 @@ const courseNotes = [
                   <div className="pt-6 text-center">
                     <h5 className="text-xl font-bold">لينا مصاروه بشاره</h5>
                     <p className="mt-1 text-sm text-blueGray-500 uppercase font-semibold">
-                    مديرة تنفيذية
+                      مديرة تنفيذية
                     </p>
-            
                   </div>
                 </div>
               </div>
               <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                <div className="px-6">
+              <div className={clsx('px-6', azanView ? "animate__animated animate__fadeInUp animate__delay-16s" : "")} ref={azaRef}>
                   <img
                     alt="..."
                     src={require("assets/img/team-members/aza.png")}
                     className="shadow-lg rounded-full mx-auto w-[160px] h-[280px] p-5"
                   />
                   <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">ليان (عزة) منصور 
-                    </h5>
+                    <h5 className="text-xl font-bold">ليان (عزة) منصور</h5>
                     <p className="mt-1 text-sm text-blueGray-500 uppercase font-semibold">
-                    مركزة المشاريع & سوشيال ميديا
+                      مركزة المشاريع & سوشيال ميديا
                     </p>
-          
                   </div>
                 </div>
               </div>
               <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                <div className="px-6 ">
+              <div className={clsx('px-6', halaInView ? "animate__animated animate__fadeInUp animate__delay-17s" : "")} ref={hakaRef}>
                   <img
                     alt="..."
                     src={require("assets/img/team-members/hala.png")}
                     className="shadow-lg rounded-full mx-auto w-[160px] h-[280px] p-5"
                   />
                   <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">هلا ابوحية 
-                    </h5>
+                    <h5 className="text-xl font-bold">هلا ابوحية</h5>
                     <p className="mt-1 text-sm text-blueGray-500 uppercase font-semibold">
-                    تسويق وكتابة محتوى
+                      تسويق وكتابة محتوى
                     </p>
-             
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </section> 
+        </section>
 
         <section className="pb-32 lg:pb-80 relative block bg-blueGray-800">
-          <Plans/>
-
+          <Plans />
         </section>
         {/* <section className="pb-20 relative block bg-blueGray-800">
 
@@ -412,10 +427,10 @@ const courseNotes = [
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200">
                   <div className="flex-auto p-5 lg:p-10">
                     <h4 className="text-2xl font-semibold">
-                    للاستفسار والتسجيل
+                      للاستفسار والتسجيل
                     </h4>
                     <p className="leading-relaxed mt-1 mb-4 text-blueGray-500">
-                    املأ التفاصيل وسنعاود الاتصال بك:
+                      املأ التفاصيل وسنعاود الاتصال بك:
                     </p>
                     <div className="relative w-full mb-3 mt-8">
                       <label
@@ -425,8 +440,7 @@ const courseNotes = [
                         الاسم
                       </label>
                       <input
-                                            onChange={(e)=>handleInputChange('fullName', e)}
-
+                        onChange={(e) => handleInputChange("fullName", e)}
                         type="text"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       />
@@ -440,33 +454,34 @@ const courseNotes = [
                         رقم الهاتف
                       </label>
                       <input
-                                            onChange={(e)=>handleInputChange('phone', e)}
-                                            type="number"
+                        onChange={(e) => handleInputChange("phone", e)}
+                        type="number"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       />
                     </div>
 
                     <div className="relative w-full mb-3">
-           
-                    <label className={inputLabelClass} htmlFor="grid-password">
-                    الفرع
-                  </label>
-                  <select
-                    name="branch"
-                    className={clsx("pr-12", inputClass, 'bg-blueGray-100')}
-                    value={leadFormData?.branchId}
-                    onChange={(e)=>handleInputChange('branchId', e)}
-                    >
-                    <option value="" selected disabled hidden>
-                      اختر الغرع
-                    </option>
-                    {branchesList?.map((branch:any) => (
-                      <option value={branch.value}>
-                        <span>{branch.label}</span>
-                      </option>
-                    ))}
-                  </select>
-
+                      <label
+                        className={inputLabelClass}
+                        htmlFor="grid-password"
+                      >
+                        الفرع
+                      </label>
+                      <select
+                        name="branch"
+                        className={clsx("pr-12", inputClass, "bg-blueGray-100")}
+                        value={leadFormData?.branchId}
+                        onChange={(e) => handleInputChange("branchId", e)}
+                      >
+                        <option value="" selected disabled hidden>
+                          اختر الغرع
+                        </option>
+                        {branchesList?.map((branch: any) => (
+                          <option value={branch.value}>
+                            <span>{branch.label}</span>
+                          </option>
+                        ))}
+                      </select>
                     </div>
                     <div className="text-center mt-6">
                       <button

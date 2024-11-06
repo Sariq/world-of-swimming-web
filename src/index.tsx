@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/styles/tailwind.css";
+import 'animate.css';
+import './styles.css'
 
 // layouts
 
