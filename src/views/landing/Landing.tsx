@@ -215,7 +215,7 @@ export default function Landing() {
                 </p>
               </div>
 
-              <div className={clsx('w-full md:w-4/12 px-4 mr-auto ml-auto', welcomeRightnInView ? "animate__animated animate__fadeInLeft" : "")} ref={welcomeLeftRef}>
+              <div className={clsx('w-full md:w-4/12 px-4 mr-auto ml-auto', welcomeLeftInView && isAboveLg ? "animate__animated animate__fadeInLeft" : "")} ref={welcomeLeftRef}>
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
                   <img
                     alt="..."
@@ -239,7 +239,7 @@ export default function Landing() {
                     </h4>
                     <p className="text-md font-light mt-2 text-white">
                       معا نسعى للحفاظ على السمعة الطيبة للمشروع, وحدته ونجاحه.
-                      نرحب بك في كل حب,
+                      نرحب بك في كل حب.
                     </p>
                   </blockquote>
                 </div>
