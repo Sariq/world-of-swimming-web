@@ -47,7 +47,7 @@ const courseNotes = [
 export default function Landing() {
   const [leadFormData, setLeadFormData] = useState<any>();
   const [branchesList, setBranchesList] = useState<any>([
-    { label: "سخنين", value: "1" },
+    { label: "دبورية", value: "1" },
     { label: "الطيبة", value: "2" },
   ]);
 
@@ -61,6 +61,7 @@ export default function Landing() {
   const { ref: linaRef, inView: linaInView } = useInView({ triggerOnce: true });
   const { ref: azaRef, inView: azanView } = useInView({ triggerOnce: true });
   const { ref: hakaRef, inView: halaInView } = useInView({ triggerOnce: true });
+  const { ref: lamaRef, inView: lamaInView } = useInView({ triggerOnce: true });
 
 
   const isAboveLg = useMediaQueryMatch("md");
@@ -90,7 +91,7 @@ export default function Landing() {
 
   return (
     <>
-      {/* <Navbar transparent /> */}
+      <Navbar transparent />
       <main className="bg-blueGray-200 ">
         <section
           className="bg-blueGray-200 md:h-screen h-80	bg-cover "
@@ -349,8 +350,8 @@ export default function Landing() {
                 </p> */}
               </div>
             </div>
-            <div className="flex flex-wrap">
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+            <div className="flex flex-wrap justify-center">
+              <div className=" lg:mb-0 mb-12 px-4">
                 <div className={clsx('px-6', rehamInView ? "animate__animated animate__fadeInUp animate__delay-14s" : "")} ref={rehamRef}>
                   <img
                     alt="..."
@@ -365,7 +366,7 @@ export default function Landing() {
                   </div>
                 </div>
               </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+              <div className="lg:mb-0 mb-12 px-4">
               <div className={clsx('px-6', linaInView ? "animate__animated animate__fadeInUp animate__delay-15s" : "")} ref={linaRef}>
               <img
                     alt="..."
@@ -380,7 +381,7 @@ export default function Landing() {
                   </div>
                 </div>
               </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+              <div className="  lg:mb-0 mb-12 px-4">
               <div className={clsx('px-6', azanView ? "animate__animated animate__fadeInUp animate__delay-16s" : "")} ref={azaRef}>
                   <img
                     alt="..."
@@ -395,7 +396,7 @@ export default function Landing() {
                   </div>
                 </div>
               </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+              <div className="  lg:mb-0 mb-12 px-4">
               <div className={clsx('px-6', halaInView ? "animate__animated animate__fadeInUp animate__delay-17s" : "")} ref={hakaRef}>
                   <img
                     alt="..."
@@ -404,6 +405,21 @@ export default function Landing() {
                   />
                   <div className="pt-6 text-center">
                     <h5 className="text-xl font-bold">هلا ابوحية</h5>
+                    <p className="mt-1 text-sm text-blueGray-500 uppercase font-semibold">
+                      تسويق وكتابة محتوى
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="  lg:mb-0 mb-12 px-4">
+              <div className={clsx('px-6', lamaInView ? "animate__animated animate__fadeInUp animate__delay-18s" : "")} ref={lamaRef}>
+                  <img
+                    alt="..."
+                    src={require("assets/img/team-members/lama.png")}
+                    className="shadow-lg rounded-full mx-auto w-[160px] h-[280px] p-5"
+                  />
+                  <div className="pt-6 text-center">
+                    <h5 className="text-xl font-bold">لمى قاسم</h5>
                     <p className="mt-1 text-sm text-blueGray-500 uppercase font-semibold">
                       تسويق وكتابة محتوى
                     </p>

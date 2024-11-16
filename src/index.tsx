@@ -33,6 +33,9 @@ import ErrorsPage from "views/admin/errors";
 import DeliveryArea from "views/admin/delivery-area";
 import Cart from "views/cart/cart";
 import DeliveryListView from "views/delivery/delivery-list";
+import FreeStyleSwimming from "views/swimming-types/free-style-swimming";
+import MarathonSwimming from "views/swimming-types/marathon-swimming";
+import SeaSwimming from "views/swimming-types/sea-swimming";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -67,6 +70,9 @@ root.render(
       <Route path="/landing" element={<Landing />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/swimming-types/free-style" element={<FreeStyleSwimming />} />
+      <Route path="/swimming-types/marathon" element={<MarathonSwimming />} />
+      <Route path="/swimming-types/sea" element={<SeaSwimming />} />
       <Route path="/pizza-gmel/delivery" element={<DeliveryListView />} />
       <Route path="/" element={<Index />} />
     </Routes>
