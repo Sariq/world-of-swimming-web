@@ -20,7 +20,7 @@ const SwimmingTypesDropdown = () => {
   return (
     <>
       <a
-        className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center lg:text-lg uppercase font-bold "
+        className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center lg:text-lg uppercase font-bold w-full"
         href="#pablo"
         ref={btnDropdownRef}
         onClick={(e) => {
@@ -37,7 +37,7 @@ const SwimmingTypesDropdown = () => {
         ref={popoverDropdownRef}
         className={
           (dropdownPopoverShow ? "block " : "hidden ") +
-          "bg-white text-lg z-50 float-left py-2 list-none text-right rounded shadow-lg min-w-48"
+          "bg-white text-lg z-50 float-left py-2 list-none text-right rounded shadow-lg min-w-48 mr-30 w-[87%]"
         }
       >
         <Link

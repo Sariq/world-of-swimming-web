@@ -7,15 +7,18 @@ import { Link } from "react-router-dom";
 import PagesDropdown from "components/Dropdowns/PagesDropdown.js";
 import SwimmingTypesDropdown from "components/Dropdowns/swimmingTypesDropdown";
 
-export default function Navbar(props) {
+export type TProps = {
+  onClick: ()=> void
+}
+export default function Navbar({onClick}:TProps) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
     <>
       <nav className="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-1 navbar-expand-lg z-10  bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 ">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-          {/* <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link
-              className="text-white text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+              className="text-white text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase md:hidden"
               to="/"
             >
               World Of Swimming
@@ -27,7 +30,7 @@ export default function Navbar(props) {
             >
               <i className="text-whitefas fa-solid fa-bars text-white"></i>
             </button>
-          </div> */}
+          </div>
           <div
             className={
               "lg:flex flex-grow items-center bg-white lg:bg-opacity-0 lg:shadow-none" +
@@ -47,21 +50,33 @@ export default function Navbar(props) {
                 </a>
               </li>
             </ul> */}
-            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto ">
               <li className="flex items-center">
                 <SwimmingTypesDropdown />
               </li>
-              <hr className="my-2  md:min-w-full md:hidden" />
+              <hr className="my-2 md:min-w-full md:hidden" />
+              <>
+                <li className="flex  md:mx-5 items-center">
+                  <button 
+                            className="lg:text-white cursor-pointer text-lg px-3 py-1 border border-solid border-transparent rounded bg-transparent block  outline-none focus:outline-none"
+                            type="button"
+                            onClick={onClick}
+                  >
+                   تسجيل
+                  </button>
+                </li>
+                <hr className="my-2  md:min-w-full md:hidden" />
+              </>
 
-              <li className="flex items-center">
-              <Link
-          to="/cart"
-          className={
-            "lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center lg:text-lg uppercase font-bold"
-          }
-        >
+              <li className="flex items-center ">
+                <Link
+                  to="/cart"
+                  className={
+                    "lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center lg:text-lg uppercase font-bold"
+                  }
+                >
                   السلة
-                  </Link>
+                </Link>
                 {/* <a
                   className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center lg:text-lg uppercase font-bold"
                   href="https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus?ref=nr-auth-navbar"
@@ -69,7 +84,7 @@ export default function Navbar(props) {
                   الاغراض
                 </a> */}
               </li>
-   
+
               {/* <li className="flex items-center">
                 <PagesDropdown />
               </li> */}

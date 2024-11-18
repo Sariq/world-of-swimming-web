@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 
 // components
 
-import Navbar from "components/Navbars/AuthNavbar.js";
+import Navbar from "components/Navbars/AuthNavbar";
 import Footer from "components/Footers/Footer.js";
 import UserDropdown from "components/Dropdowns/UserDropdown";
 import clsx from "clsx";
@@ -12,6 +12,7 @@ import createLeadApi from "apis/lead/create-lead";
 import Profile from "views/Profile";
 import Plans from "components/plans";
 import { useMediaQueryMatch } from "shared/hooks/media-query-match";
+import { duration } from "moment";
 const inputLabelClass =
   "block text-lg uppercase text-blueGray-600 font-bold mb-2";
 const iconClass =
@@ -63,6 +64,7 @@ export default function Landing() {
   const { ref: hakaRef, inView: halaInView } = useInView({ triggerOnce: true });
   const { ref: lamaRef, inView: lamaInView } = useInView({ triggerOnce: true });
 
+  const registerRef = useRef<any>(null);
 
   const isAboveLg = useMediaQueryMatch("md");
   console.log("isAboveLg", isAboveLg);
@@ -89,9 +91,15 @@ export default function Landing() {
     // }
   };
 
+  const scrollToRegister = () => {
+    if(registerRef){
+      registerRef?.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
-      <Navbar transparent />
+      <Navbar onClick={scrollToRegister} />
       <main className="bg-blueGray-200 ">
         <section
           className="bg-blueGray-200 md:h-screen h-80	bg-cover "
@@ -103,7 +111,7 @@ export default function Landing() {
         >
           <div
             ref={logoRef}
-            className={`mx-auto md:pt-20 justify-center ${
+            className={`mx-auto md:pt-20 justify-center pt-12 md:pt-0 ${
               logoInView ? "animate__animated animate__fadeInDown" : ""
             }`}
           >
@@ -436,7 +444,7 @@ export default function Landing() {
         {/* <section className="pb-20 relative block bg-blueGray-800">
 
         </section> */}
-        <section className="relative block py-24 lg:pt-0 bg-blueGray-800">
+        <section className="relative block py-24 lg:pt-0 bg-blueGray-800" ref={registerRef}>
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center lg:-mt-64 -mt-48">
               <div className="w-full lg:w-6/12 px-4">

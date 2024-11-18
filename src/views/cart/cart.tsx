@@ -120,12 +120,12 @@ const Cart = () => {
   );
 
   return (
-    <div className="container mx-auto mt-10 text-right">
-      <h1 className="text-2xl font-bold mb-5">سلة المشتريات</h1>
+    <div className="container px-2 md:mx-auto mt-10 text-right">
+      <h1 className="md:text-2xl font-bold mb-5 ">سلة المشتريات</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Product List */}
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 items-center w-full">
           {products.map((product) => (
             <div
               key={product.id}
@@ -134,7 +134,7 @@ const Cart = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-20 h-20 rounded"
+                className="h-10 w-10 lg:w-20 lg:h-20 rounded"
               />
               <div className="flex ml-4">
                 <h2 className="text-lg">{product.name}</h2>
@@ -187,7 +187,7 @@ const Cart = () => {
             <span>الإجمالي:</span>
             <span>₪{totalPrice}</span>
           </div>
-          <button className="mt-5 w-full bg-blue-500 text-white py-2 rounded">
+          <button className="mt-5 w-full bg-pink text-white  py-2 rounded">
             إتمام الشراء
           </button>
         </div>
