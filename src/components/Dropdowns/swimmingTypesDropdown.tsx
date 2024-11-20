@@ -37,7 +37,7 @@ const SwimmingTypesDropdown = () => {
         ref={popoverDropdownRef}
         className={
           (dropdownPopoverShow ? "block " : "hidden ") +
-          "bg-white text-lg z-50 float-left py-2 list-none text-right rounded shadow-lg min-w-48 mr-30 w-[87%]"
+          "bg-white text-lg z-50 float-left py-2 list-none text-right rounded shadow-lg min-w-48 mr-30 w-[87%] md:w-auto"
         }
       >
         <Link
