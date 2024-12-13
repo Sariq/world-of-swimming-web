@@ -37,6 +37,7 @@ import FreeStyleSwimming from "views/swimming-types/free-style-swimming";
 import MarathonSwimming from "views/swimming-types/marathon-swimming";
 import SeaSwimming from "views/swimming-types/sea-swimming";
 import FullScreenVideo1 from "views/tv-ad/video1";
+import FullScreenVideo2 from "views/tv-ad/video2";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -76,6 +77,7 @@ root.render(
       <Route path="/swimming-types/sea" element={<SeaSwimming />} />
       <Route path="/pizza-gmel/delivery" element={<DeliveryListView />} />
       <Route path="/butcherl/video-1" element={<FullScreenVideo1 />} />
+      <Route path="/butcherl/video-2" element={<FullScreenVideo2 />} />
       <Route path="/" element={<Index />} />
     </Routes>
   </BrowserRouter>
