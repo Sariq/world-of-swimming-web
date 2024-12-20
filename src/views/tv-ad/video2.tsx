@@ -4,7 +4,7 @@ const FullScreenVideo2 = () => {
     return (
         <div className="w-full h-screen flex items-center justify-center bg-black">
           <video
-            src="/videos/video2.mp4" // Path to your video file
+            src="/videos/video2.mov" // Path to your video file
             controls
             loop
             className=""
