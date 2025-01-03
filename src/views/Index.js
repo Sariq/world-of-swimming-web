@@ -12,42 +12,20 @@ export default function Index() {
     getMenu();
   },[])
 
-  const getPermission = async () => {
-    const token = await requestNotificationPermission();
-    if (token) {
-      console.log("User subscribed for notifications!");
-    }
-  };
-
-  const requestPermission = () => {
-    if (!("Notification" in window)) {
-      alert("This browser does not support notifications.");
-      return;
-    }
-
-    Notification.requestPermission().then(async (permission) => {
-      if (permission === "granted") {
-        const token = await requestNotificationPermission();
-        if (token) {
-          alert("User subscribed for notifications!", token);
-        }
-        alert("Notification permission granted!");
-      } else {
-        alert("Notification permission denied.");
+  useEffect(() => {
+    const getPermission = async () => {
+      const token = await requestNotificationPermission();
+      if (token) {
+        console.log("User subscribed for notifications!");
       }
-    });
-  };
+    };
+    getPermission();
+  }, []);
 
   return (
     <>
       <IndexNavbar fixed />
-
       <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
-      <div>
-      <h1>Notification Test</h1>
-      <button onClick={requestPermission}>Enable Notifications</button>
-    </div>
-    
         <div className="container mx-auto items-center flex flex-wrap">
           <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
             <div className="pt-32 sm:pt-0">
