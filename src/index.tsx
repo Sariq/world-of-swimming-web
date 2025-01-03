@@ -38,10 +38,13 @@ import MarathonSwimming from "views/swimming-types/marathon-swimming";
 import SeaSwimming from "views/swimming-types/sea-swimming";
 import FullScreenVideo1 from "views/tv-ad/video1";
 import FullScreenVideo2 from "views/tv-ad/video2";
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+serviceWorkerRegistration.register({});
+
 root.render(
   <BrowserRouter>
     <Routes>
