@@ -17,11 +17,15 @@ const messaging = getMessaging(app);
 export const requestNotificationPermission = async () => {
   try {
     const token = await getToken(messaging, {
-      vapidKey: "YOUR_PUBLIC_VAPID_KEY",
+      vapidKey: "BPtN4f-Ilagn3-nIjsN6D52smAFuTF5j3cJJgLyOfSzLr-HWyv0epvdZutTelPCNVW9rx4v53240PiXg_8P58wo",
     });
     console.log("Notification Token:", token);
+    alert(token);
+
     return token;
   } catch (err) {
+    alert("Permission denied:   ---  " + err);
+
     console.error("Permission denied:", err);
     return null;
   }
