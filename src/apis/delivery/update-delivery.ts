@@ -1,12 +1,10 @@
 import { BASE_URL } from "consts/api";
 import { axiosInstance } from "utils/http-interceptor";
 
-export const getDeliveryListApi = () => {
-    const body = {
-        isAll: false
-      }
+export const updateDelivery = (data: any) => {
+    const body = data;
     return axiosInstance
-      .post(`order/get-custom-delivery`, body)
+      .post(`delivery/update`, body)
       .then(function (response) {
 
          console.log("menu list success", response);
@@ -14,4 +12,4 @@ export const getDeliveryListApi = () => {
       });
   };
 
-  export default getDeliveryListApi;
+  export default updateDelivery;
