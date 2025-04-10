@@ -36,6 +36,9 @@ const getCartData = async (order: any) => {
     const cartData: any = {
       order: finalOrder,
       total: order.totalPrice,
+      branchId: order.branchId,
+      name: order.name,
+      phone: order.phone,
       app_language: "0",
       device_os:"web",
       app_version: version,
