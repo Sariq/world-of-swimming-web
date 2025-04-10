@@ -1,6 +1,6 @@
-export const BASE_URL = "https://sari-apps-lcibm.ondigitalocean.app/api/";
+// export const BASE_URL = "https://sari-apps-lcibm.ondigitalocean.app/api/";
 //DEV
-// export const BASE_URL = "http://localhost:1111/api/";
+export const BASE_URL = "http://localhost:1111/api/";
 
 export const MENU_API = {
     CONTROLLER: "config",
@@ -19,4 +19,26 @@ export const MENU_API = {
 export const CUSTOMER_API = {
     CONTROLLER: "customer",
     CREATE_LEAD: "customer/create/lead"
+};
+
+export const ORDER_API = {
+    CONTROLLER: "order",
+    SUBMIT_ORDER_API : "create",
+    UPDATE_CCPAYMENT_API: "updateCCPayment",
+    ADD_REFUND_API: "addRefund",
+    GET_ADMIN_ORDERS_API: "admin/orders",
+    GET_ADMIN_NOT_PRINTED_ORDERS_API: "admin/not-printed",
+    GET_ADMIN_NOT_VIEWD_ORDERS_API: "admin/not-viewd",
+    GET_ADMIN_ALL_NOT_VIEWD_ORDERS_API: "admin/all/not-viewd",
+    GET_CUSTOMER_INVOICES_API: "customer-invoices",
+    GET_CUSTOMER_ORDERS_API: "customer-orders",
+    UPDATE_ADMIN_ORDERS_API: "update",
+    UPDATE_ADMIN_ORDERS_VIEWD_API: "update/viewd",
+    UPDATE_ADMIN_ORDERS_BOOK_DELIVERY_API: "book-delivery",
+    CREATE_ADMIN_ORDERS_BOOK_CUSTOM_DELIVERY_API: "book-custom-delivery",
+    UPDATE_ADMIN_ORDERS_BOOK_CUSTOM_DELIVERY_API: "update-custom-delivery",
+    GET_ADMIN_ORDERS_BOOK_CUSTOM_DELIVERY_API: "get-custom-delivery",
+    UPDATE_ALL_ADMIN_ORDERS_API: "update/all",
+    PRINTED_ADMIN_ORDERS_API: "printed",
+    GET_ORDERS_API : "getorders",
 };

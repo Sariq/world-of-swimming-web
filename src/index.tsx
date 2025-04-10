@@ -83,7 +83,7 @@ root.render(
       <Route path="/delivery-order/:id" element={<DeliveryOrderForm />} />
       <Route path="/butcherl/video-1" element={<FullScreenVideo1 />} />
       <Route path="/butcherl/video-2" element={<FullScreenVideo2 />} />
-      <Route path="/" element={<Index />} />
+      <Route path="/" element={<Landing />} />
     </Routes>
   </BrowserRouter>
 );
