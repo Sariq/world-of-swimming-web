@@ -46,19 +46,34 @@ const courseNotes = [
 ];
 
 export default function Landing() {
-  const [leadFormData, setLeadFormData] = useState<any>();
+  const [leadFormData, setLeadFormData] = useState<any>({
+    fullName: "",
+    phone: "",
+    branchId: "",
+  });
   const [branchesList, setBranchesList] = useState<any>([
     { label: "دبورية", value: "1" },
     { label: "الطيبة", value: "2" },
   ]);
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<any>({});
+
   const { ref: logoRef, inView: logoInView } = useInView({ triggerOnce: true });
-  const { ref: welcomeRightRef, inView: welcomeRightnInView } = useInView({ triggerOnce: true });
-  const { ref: welcomeLeftRef, inView: welcomeLeftInView } = useInView({ triggerOnce: true });
+  const { ref: welcomeRightRef, inView: welcomeRightnInView } = useInView({
+    triggerOnce: true,
+  });
+  const { ref: welcomeLeftRef, inView: welcomeLeftInView } = useInView({
+    triggerOnce: true,
+  });
 
-
-  const { ref: takamRef, inView: takamInView } = useInView({ triggerOnce: true });
-  const { ref: rehamRef, inView: rehamInView } = useInView({ triggerOnce: true });
+  const { ref: takamRef, inView: takamInView } = useInView({
+    triggerOnce: true,
+  });
+  const { ref: rehamRef, inView: rehamInView } = useInView({
+    triggerOnce: true,
+  });
   const { ref: linaRef, inView: linaInView } = useInView({ triggerOnce: true });
   const { ref: azaRef, inView: azanView } = useInView({ triggerOnce: true });
   const { ref: hakaRef, inView: halaInView } = useInView({ triggerOnce: true });
@@ -67,15 +82,47 @@ export default function Landing() {
   const registerRef = useRef<any>(null);
 
   const isAboveLg = useMediaQueryMatch("md");
-  console.log("isAboveLg", isAboveLg);
   const handleInputChange = (name: string, event: any) => {
     const target = event.target;
     const value = target.value;
     setLeadFormData({ ...leadFormData, [name]: value });
   };
 
-  const createLead = () => {
-    createLeadApi(leadFormData);
+  const createLead = async () => {
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+    try {
+      await createLeadApi(leadFormData);
+      setIsSubmitted(true);
+      setLeadFormData({
+        fullName: "",
+        phone: "",
+        branchId: "",
+      }); // optional: reset form
+      setErrors({});
+    } catch (error) {
+      console.error("Error submitting lead", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const validateForm = () => {
+    console.log("xx");
+    const newErrors: any = {};
+    if (!leadFormData?.fullName || leadFormData.fullName.trim() === "") {
+      newErrors.fullName = "الاسم مطلوب";
+    }
+    if (!leadFormData?.phone || leadFormData.phone.toString().length < 9) {
+      newErrors.phone = "رقم هاتف غير صالح";
+    }
+    if (!leadFormData?.branchId) {
+      newErrors.branchId = "الرجاء اختيار الفرع";
+    }
+    console.log("newErrors", newErrors);
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const getInputClass = () => {
@@ -92,7 +139,7 @@ export default function Landing() {
   };
 
   const scrollToRegister = () => {
-    if(registerRef){
+    if (registerRef) {
       registerRef?.current.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -206,7 +253,14 @@ export default function Landing() {
             </div>
 
             <div className="flex flex-wrap items-center mt-5 lg:mt-32">
-              <div className={clsx('w-full md:w-5/12 px-4 mr-auto ml-auto', welcomeRightnInView ? "animate__animated animate__fadeInRight" : "")}   ref={welcomeRightRef}
+              <div
+                className={clsx(
+                  "w-full md:w-5/12 px-4 mr-auto ml-auto",
+                  welcomeRightnInView
+                    ? "animate__animated animate__fadeInRight"
+                    : ""
+                )}
+                ref={welcomeRightRef}
               >
                 <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
                   <i className="fas fa-user-friends text-xl"></i>
@@ -224,7 +278,15 @@ export default function Landing() {
                 </p>
               </div>
 
-              <div className={clsx('w-full md:w-4/12 px-4 mr-auto ml-auto', welcomeLeftInView && isAboveLg ? "animate__animated animate__fadeInLeft" : "")} ref={welcomeLeftRef}>
+              <div
+                className={clsx(
+                  "w-full md:w-4/12 px-4 mr-auto ml-auto",
+                  welcomeLeftInView && isAboveLg
+                    ? "animate__animated animate__fadeInLeft"
+                    : ""
+                )}
+                ref={welcomeLeftRef}
+              >
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
                   <img
                     alt="..."
@@ -350,7 +412,15 @@ export default function Landing() {
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center text-center mb-8 lg:mb-24">
               <div className="w-full lg:w-6/12 px-4">
-                <h2 className={clsx('text-4xl font-semibold', takamInView ? "animate__animated animate__bounceInUp" : "")} ref={takamRef}>طاقم المشروع</h2>
+                <h2
+                  className={clsx(
+                    "text-4xl font-semibold",
+                    takamInView ? "animate__animated animate__bounceInUp" : ""
+                  )}
+                  ref={takamRef}
+                >
+                  طاقم المشروع
+                </h2>
                 {/* <p className="text-lg leading-relaxed m-4 text-blueGray-500">
                   According to the National Oceanic and Atmospheric
                   Administration, Ted, Scambos, NSIDClead scentist, puts the
@@ -360,7 +430,15 @@ export default function Landing() {
             </div>
             <div className="flex flex-wrap justify-center">
               <div className=" lg:mb-0 mb-12 px-4">
-                <div className={clsx('px-6', rehamInView ? "animate__animated animate__fadeInUp animate__delay-14s" : "")} ref={rehamRef}>
+                <div
+                  className={clsx(
+                    "px-6",
+                    rehamInView
+                      ? "animate__animated animate__fadeInUp animate__delay-14s"
+                      : ""
+                  )}
+                  ref={rehamRef}
+                >
                   <img
                     alt="..."
                     src={require("assets/img/team-members/reham.png")}
@@ -375,8 +453,16 @@ export default function Landing() {
                 </div>
               </div>
               <div className="lg:mb-0 mb-12 px-4">
-              <div className={clsx('px-6', linaInView ? "animate__animated animate__fadeInUp animate__delay-15s" : "")} ref={linaRef}>
-              <img
+                <div
+                  className={clsx(
+                    "px-6",
+                    linaInView
+                      ? "animate__animated animate__fadeInUp animate__delay-15s"
+                      : ""
+                  )}
+                  ref={linaRef}
+                >
+                  <img
                     alt="..."
                     src={require("assets/img/team-members/lina.png")}
                     className="shadow-lg rounded-full mx-auto w-[160px] h-[280px] p-5"
@@ -390,7 +476,15 @@ export default function Landing() {
                 </div>
               </div>
               <div className="  lg:mb-0 mb-12 px-4">
-              <div className={clsx('px-6', azanView ? "animate__animated animate__fadeInUp animate__delay-16s" : "")} ref={azaRef}>
+                <div
+                  className={clsx(
+                    "px-6",
+                    azanView
+                      ? "animate__animated animate__fadeInUp animate__delay-16s"
+                      : ""
+                  )}
+                  ref={azaRef}
+                >
                   <img
                     alt="..."
                     src={require("assets/img/team-members/aza.png")}
@@ -405,7 +499,15 @@ export default function Landing() {
                 </div>
               </div>
               <div className="  lg:mb-0 mb-12 px-4">
-              <div className={clsx('px-6', halaInView ? "animate__animated animate__fadeInUp animate__delay-17s" : "")} ref={hakaRef}>
+                <div
+                  className={clsx(
+                    "px-6",
+                    halaInView
+                      ? "animate__animated animate__fadeInUp animate__delay-17s"
+                      : ""
+                  )}
+                  ref={hakaRef}
+                >
                   <img
                     alt="..."
                     src={require("assets/img/team-members/hala.png")}
@@ -420,7 +522,15 @@ export default function Landing() {
                 </div>
               </div>
               <div className="  lg:mb-0 mb-12 px-4">
-              <div className={clsx('px-6', lamaInView ? "animate__animated animate__fadeInUp animate__delay-18s" : "")} ref={lamaRef}>
+                <div
+                  className={clsx(
+                    "px-6",
+                    lamaInView
+                      ? "animate__animated animate__fadeInUp animate__delay-18s"
+                      : ""
+                  )}
+                  ref={lamaRef}
+                >
                   <img
                     alt="..."
                     src={require("assets/img/team-members/lama.png")}
@@ -444,7 +554,10 @@ export default function Landing() {
         {/* <section className="pb-20 relative block bg-blueGray-800">
 
         </section> */}
-        <section className="relative block py-24 lg:pt-0 bg-blueGray-800" ref={registerRef}>
+        <section
+          className="relative block py-24 lg:pt-0 bg-blueGray-800"
+          ref={registerRef}
+        >
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center lg:-mt-64 -mt-48">
               <div className="w-full lg:w-6/12 px-4">
@@ -465,9 +578,15 @@ export default function Landing() {
                       </label>
                       <input
                         onChange={(e) => handleInputChange("fullName", e)}
+                        value={leadFormData?.fullName}
                         type="text"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       />
+                      {errors.fullName && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.fullName}
+                        </p>
+                      )}
                     </div>
 
                     <div className="relative w-full mb-3">
@@ -479,9 +598,15 @@ export default function Landing() {
                       </label>
                       <input
                         onChange={(e) => handleInputChange("phone", e)}
+                        value={leadFormData?.phone}
                         type="number"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       />
+                      {errors.phone && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.phone}
+                        </p>
+                      )}
                     </div>
 
                     <div className="relative w-full mb-3">
@@ -506,14 +631,57 @@ export default function Landing() {
                           </option>
                         ))}
                       </select>
+                      {errors.branchId && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.branchId}
+                        </p>
+                      )}
                     </div>
-                    <div className="text-center mt-6">
+                    {isSubmitted && (
+                      <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative text-right mb-4 animate__animated animate__fadeIn">
+                        <strong className="font-bold ml-1">تم الإرسال بنجاح!</strong>
+                        <span className="block sm:inline ml-2">
+                          سنقوم بالتواصل معك قريبا.
+                        </span>
+                      </div>
+                    )}
+                    <div className="flex justify-center mt-6">
                       <button
-                        className="bg-blueGray-800 text-white active:bg-blueGray-600 text-md font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        className="bg-blueGray-800 text-white active:bg-blueGray-600 text-lg font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 flex items-center justify-center gap-2 disabled:opacity-50 w-6/12"
                         type="button"
                         onClick={createLead}
+                        disabled={
+                          isSubmitting ||
+                          !leadFormData?.fullName ||
+                          !leadFormData?.phone ||
+                          !leadFormData?.branchId
+                        }
                       >
-                        ارسل
+                        {isSubmitting ? (
+                          <>
+                            <svg
+                              className="animate-spin h-5 w-5 text-white"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              ></circle>
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                              ></path>
+                            </svg>
+                            جاري الإرسال...
+                          </>
+                        ) : (
+                          "ارسل"
+                        )}
                       </button>
                     </div>
                   </div>
