@@ -50,6 +50,7 @@ export default function Landing() {
     fullName: "",
     phone: "",
     branchId: "",
+    preferredDays: [],
   });
   const [branchesList, setBranchesList] = useState<any>([
     { label: "دبورية", value: "1" },
@@ -99,6 +100,7 @@ export default function Landing() {
         fullName: "",
         phone: "",
         branchId: "",
+        preferredDays: [],
       }); // optional: reset form
       setErrors({});
     } catch (error) {
@@ -637,6 +639,45 @@ export default function Landing() {
                         </p>
                       )}
                     </div>
+
+                    <div className="relative w-full mb-3">
+                      <label className={inputLabelClass}>
+                        الأيام المفضلة
+                      </label>
+                      <div className="grid grid-cols-2 gap-2">
+                        {[
+                          { id: 'sunday', label: 'الأحد' },
+                          { id: 'monday', label: 'الإثنين' },
+                          { id: 'tuesday', label: 'الثلاثاء' },
+                          { id: 'wednesday', label: 'الأربعاء' },
+                          { id: 'thursday', label: 'الخميس' },
+                          { id: 'friday', label: 'الجمعة' },
+                          { id: 'saturday', label: 'السبت' },
+                        ].map((day) => (
+                          <div key={day.id} className="flex items-center">
+                            <input
+                              type="checkbox"
+                              id={day.id}
+                              className="h-4 w-4 text-blueGray-800 border-blueGray-300 rounded"
+                              onChange={(e) => {
+                                const updatedDays = e.target.checked
+                                  ? [...leadFormData.preferredDays, day.label]
+                                  : leadFormData.preferredDays.filter((d: string) => d !== day.label);
+                                setLeadFormData({
+                                  ...leadFormData,
+                                  preferredDays: updatedDays
+                                });
+                              }}
+                              checked={leadFormData.preferredDays.includes(day.label)}
+                            />
+                            <label htmlFor={day.id} className="mr-2 text-blueGray-600">
+                              {day.label}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
                     {isSubmitted && (
                       <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative text-right mb-4 animate__animated animate__fadeIn">
                         <strong className="font-bold ml-1">تم الإرسال بنجاح!</strong>
