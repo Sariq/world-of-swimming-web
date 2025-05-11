@@ -49,8 +49,10 @@ export default function Landing() {
   const [leadFormData, setLeadFormData] = useState<any>({
     fullName: "",
     phone: "",
+    email: "",
     branchId: "",
     preferredDays: [],
+    acceptEmails: false,
   });
   const [branchesList, setBranchesList] = useState<any>([
     { label: "دبورية", value: "1" },
@@ -99,8 +101,10 @@ export default function Landing() {
       setLeadFormData({
         fullName: "",
         phone: "",
+        email: "",
         branchId: "",
         preferredDays: [],
+        acceptEmails: false,
       }); // optional: reset form
       setErrors({});
     } catch (error) {
@@ -118,6 +122,9 @@ export default function Landing() {
     }
     if (!leadFormData?.phone || leadFormData.phone.toString().length < 9) {
       newErrors.phone = "رقم هاتف غير صالح";
+    }
+    if (!leadFormData?.email || !leadFormData.email.includes('@')) {
+      newErrors.email = "البريد الإلكتروني غير صالح";
     }
     if (!leadFormData?.branchId) {
       newErrors.branchId = "الرجاء اختيار الفرع";
@@ -596,6 +603,26 @@ export default function Landing() {
                         className="block uppercase text-blueGray-600 text-md font-bold mb-2"
                         htmlFor="email"
                       >
+                        البريد الإلكتروني
+                      </label>
+                      <input
+                        onChange={(e) => handleInputChange("email", e)}
+                        value={leadFormData?.email}
+                        type="email"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      />
+                      {errors.email && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.email}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-md font-bold mb-2"
+                        htmlFor="phone"
+                      >
                         رقم الهاتف
                       </label>
                       <input
@@ -675,6 +702,26 @@ export default function Landing() {
                             </label>
                           </div>
                         ))}
+                      </div>
+                    </div>
+
+                    <div className="relative w-full mb-3 mt-7">
+                      <div className="flex items-center">
+                        <input
+                          type="checkbox"
+                          id="acceptEmails"
+                          className="h-4 w-4 text-blueGray-800 border-blueGray-300 rounded"
+                          onChange={(e) => {
+                            setLeadFormData({
+                              ...leadFormData,
+                              acceptEmails: e.target.checked
+                            });
+                          }}
+                          checked={leadFormData.acceptEmails}
+                        />
+                        <label htmlFor="acceptEmails" className="mr-2 text-blueGray-600">
+                          أوافق على تلقي الإشعارات والتحديثات عبر البريد الإلكتروني
+                        </label>
                       </div>
                     </div>
 
