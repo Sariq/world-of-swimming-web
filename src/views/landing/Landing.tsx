@@ -53,6 +53,7 @@ export default function Landing() {
     branchId: "",
     preferredDays: [],
     acceptEmails: false,
+    preferSummer: false,
   });
   const [branchesList, setBranchesList] = useState<any>([
     { label: "دبورية", value: "1" },
@@ -105,6 +106,7 @@ export default function Landing() {
         branchId: "",
         preferredDays: [],
         acceptEmails: false,
+        preferSummer: false,
       }); // optional: reset form
       setErrors({});
     } catch (error) {
@@ -639,10 +641,7 @@ export default function Landing() {
                     </div>
 
                     <div className="relative w-full mb-3">
-                      <label
-                        className={inputLabelClass}
-                        htmlFor="grid-password"
-                      >
+                      <label className={inputLabelClass} htmlFor="grid-password">
                         الفرع
                       </label>
                       <select
@@ -667,11 +666,13 @@ export default function Landing() {
                       )}
                     </div>
 
-                    <div className="relative w-full mb-3">
-                      <label className={inputLabelClass}>
-                        الأيام المفضلة
-                      </label>
-                      <div className="grid grid-cols-2 gap-2">
+                    <div className="mt-6"></div>
+
+                    <div className="relative w-full mb-6 p-4 bg-white rounded shadow border border-blueGray-200">
+                      <div className="mb-2">
+                        <span className="block text-lg font-bold text-blueGray-700 mb-2">الأيام المفضلة</span>
+                      </div>
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-4">
                         {[
                           { id: 'sunday', label: 'الأحد' },
                           { id: 'monday', label: 'الإثنين' },
@@ -681,11 +682,11 @@ export default function Landing() {
                           { id: 'friday', label: 'الجمعة' },
                           { id: 'saturday', label: 'السبت' },
                         ].map((day) => (
-                          <div key={day.id} className="flex items-center">
+                          <div key={day.id} className="flex items-center space-x-2 space-x-reverse">
                             <input
                               type="checkbox"
                               id={day.id}
-                              className="h-4 w-4 text-blueGray-800 border-blueGray-300 rounded"
+                              className="h-5 w-5 text-blueGray-800 border-blueGray-300 rounded focus:ring-2 focus:ring-blue-400 transition duration-150"
                               onChange={(e) => {
                                 const updatedDays = e.target.checked
                                   ? [...leadFormData.preferredDays, day.label]
@@ -697,7 +698,7 @@ export default function Landing() {
                               }}
                               checked={leadFormData.preferredDays.includes(day.label)}
                             />
-                            <label htmlFor={day.id} className="mr-2 text-blueGray-600">
+                            <label htmlFor={day.id} className="mr-2 text-blueGray-600 cursor-pointer select-none">
                               {day.label}
                             </label>
                           </div>
@@ -705,12 +706,34 @@ export default function Landing() {
                       </div>
                     </div>
 
-                    <div className="relative w-full mb-3 mt-7">
+                    <div className="relative w-full mb-3 p-4 bg-white rounded shadow border border-blueGray-200">
+                      <span className="block text-lg font-bold text-blueGray-700 mb-2">تفضيلات الدورة</span>
+                      <div className="flex items-center">
+                        <input
+                          type="checkbox"
+                          id="preferSummer"
+                          className="h-5 w-5 text-blueGray-800 border-blueGray-300 rounded focus:ring-2 focus:ring-blue-400 transition duration-150"
+                          onChange={(e) => {
+                            setLeadFormData({
+                              ...leadFormData,
+                              preferSummer: e.target.checked
+                            });
+                          }}
+                          checked={leadFormData.preferSummer}
+                        />
+                        <label htmlFor="preferSummer" className="mr-2 text-blueGray-600 cursor-pointer select-none">
+                          أفضّل الدورات في فصل الصيف
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="relative w-full mb-3 p-4 bg-white rounded shadow border border-blueGray-200">
+                      <span className="block text-lg font-bold text-blueGray-700 mb-2">الموافقة على الشروط</span>
                       <div className="flex items-center">
                         <input
                           type="checkbox"
                           id="acceptEmails"
-                          className="h-4 w-4 text-blueGray-800 border-blueGray-300 rounded"
+                          className="h-5 w-5 text-blueGray-800 border-blueGray-300 rounded focus:ring-2 focus:ring-blue-400 transition duration-150"
                           onChange={(e) => {
                             setLeadFormData({
                               ...leadFormData,
@@ -719,7 +742,7 @@ export default function Landing() {
                           }}
                           checked={leadFormData.acceptEmails}
                         />
-                        <label htmlFor="acceptEmails" className="mr-2 text-blueGray-600">
+                        <label htmlFor="acceptEmails" className="mr-2 text-blueGray-600 cursor-pointer select-none">
                           أوافق على تلقي الإشعارات والتحديثات عبر البريد الإلكتروني
                         </label>
                       </div>
